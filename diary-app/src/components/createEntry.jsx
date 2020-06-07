@@ -37,7 +37,7 @@ const Whatever = ({AppStore}) => {
     
 
     const booleanThing = false;
-    const tempValue = AppStore.dataObject;
+    const tempValue = AppStore.temp.get();
 
     return (
         <Container toggle={booleanThing}>
@@ -53,7 +53,7 @@ const Whatever = ({AppStore}) => {
             <button onClick={ () => { AppStore.updateTemp() } } className="lol_button"> HEY </button>
             {inputTitle}
             {inputEntry}
-            {JSON.stringify(tempValue)}
+            {tempValue}
         </Container>
     )
 };

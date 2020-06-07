@@ -10,10 +10,8 @@ class DataStore {
     dataObject = observable({});
     
     updateTemp = action(() => {
-        this.dataObject = {
-            value: 'something'
-        };
-        console.log('JONG', this.dataObject );
+        const x = this.temp;
+        this.temp.set(x / 2);
     });
     
 }
