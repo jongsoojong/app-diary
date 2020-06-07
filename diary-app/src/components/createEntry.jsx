@@ -39,6 +39,8 @@ const Whatever = ({AppStore}) => {
     const booleanThing = false;
     const tempValue = AppStore.temp.get();
 
+    const tempObject = AppStore.dataObject;
+
     return (
         <Container toggle={booleanThing}>
             <form>
@@ -54,6 +56,7 @@ const Whatever = ({AppStore}) => {
             {inputTitle}
             {inputEntry}
             {tempValue}
+            {tempObject.something}
         </Container>
     )
 };
