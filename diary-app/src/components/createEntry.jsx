@@ -52,6 +52,7 @@ const Whatever = ({AppStore}) => {
                 
                 <input type="submit" onClick={ (e) => onSubmit(e) } className="btn create-entry-btn"/>
             </form>
+            <button className="testbutton" onClick={ () => { AppStore.updateObject({title=inputTitle, entry=inputEntry}) } } >CLICK ME</button>
             <button onClick={ () => { AppStore.updateTemp() } } className="lol_button"> HEY </button>
             {inputTitle}
             {inputEntry}

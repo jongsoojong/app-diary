@@ -9,11 +9,20 @@ class DataStore {
     temp = observable.box(8888);
 
     dataObject = observable({something: "somethingElse"});
+
+    entryObject = observable({  
+        entryTitle: '',
+        entryContent: ''
+    })
+
+    updateObject = action(( {title, entry} ) => {
+        this.entryObject.entryTitle = title;
+        this.entryObject.entryContent = entry;
+    })
     
     updateTemp = action(() => {
         const x = this.temp;
         this.temp.set(x / 2);
-        console.log(this.dataObject.value);
         this.dataObject.something = 'something';
     });
     
