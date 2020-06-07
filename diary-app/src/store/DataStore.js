@@ -18,7 +18,9 @@ class DataStore {
     updateObject = action(( {title, entry} ) => {
         this.entryObject.entryTitle = title;
         this.entryObject.entryContent = entry;
-    })
+
+        console.log(this.entryObject);
+    });
     
     updateTemp = action(() => {
         const x = this.temp;

@@ -16,6 +16,11 @@ const Container = styled.div`
             text-align: left;
         }
     }
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 const Whatever = ({AppStore}) => {
@@ -39,7 +44,7 @@ const Whatever = ({AppStore}) => {
     const booleanThing = false;
     const tempValue = AppStore.temp.get();
 
-    const tempObject = AppStore.dataObject;
+    const tempObject = AppStore.entryObject;
 
     return (
         <Container toggle={booleanThing}>
@@ -52,12 +57,40 @@ const Whatever = ({AppStore}) => {
                 
                 <input type="submit" onClick={ (e) => onSubmit(e) } className="btn create-entry-btn"/>
             </form>
-            <button className="testbutton" onClick={ () => { AppStore.updateObject({title=inputTitle, entry=inputEntry}) } } >CLICK ME</button>
+            <button 
+                className="testbutton" 
+                onClick={ () => {
+                    AppStore.updateObject({title:inputTitle , entry:inputEntry})
+                }} 
+                >
+                    CLICK ME
+            </button>
             <button onClick={ () => { AppStore.updateTemp() } } className="lol_button"> HEY </button>
-            {inputTitle}
-            {inputEntry}
-            {tempValue}
-            {tempObject.something}
+            <div>
+                <div>
+                    LOCAL STATE
+                </div>
+                <div>
+                    {inputTitle}
+                </div>
+                <div>
+                    {inputEntry}
+                </div>
+                <div>
+                    {tempValue}
+                </div>
+            </div>
+            <div>
+                <div>
+                    MOBX
+                </div>
+                <div>
+                    {tempObject.entryTitle}
+                </div>
+                <div>
+                    {tempObject.entryContent}
+                </div>
+            </div>
         </Container>
     )
 };
