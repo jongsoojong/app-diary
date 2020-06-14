@@ -11,15 +11,22 @@ class DataStore {
     dataObject = observable({something: "somethingElse"});
 
     entryObject = observable({  
-        entryTitle: '',
-        entryContent: ''
+        
     })
 
-    updateObject = action(( {title, entry} ) => {
-        this.entryObject.entryTitle = title;
-        this.entryObject.entryContent = entry;
-
-        console.log(this.entryObject);
+    updateObject = action(( {mobId, date, title, entry} ) => {
+        console.log('mobId', mobId);
+        console.log('date', date);
+        console.log('title', title);
+        console.log('entry', entry);
+        
+        if(!this.entryObject[mobId]) {
+            this.entryObject[mobId] = {
+                date: date,
+                title: title,
+                entry: entry
+            }
+        }
     });
     
     updateTemp = action(() => {

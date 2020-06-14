@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+
 import { inject, observer } from 'mobx-react';
 import { toJS } from 'mobx';
+
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+import styled from 'styled-components';
 
 const Container = styled.div`
     width: 100%;
@@ -66,25 +72,40 @@ const StyledButton = styled.button `
     color: 	${props => props.toggle ? '#eeeeee' : '#000000'};
 `;
 
-//homework: Style the page; put more fields in (date, (alpha+ photos?), (alpha+ geolocation?)) Put everything into mobx on click; on change save to local storage as its doing
+dayjs.extend(duration);
+dayjs.extend(relativeTime);
 
 const Whatever = ({AppStore}) => {
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); 
-    let yyyy = today.getFullYear();
 
-    let todayDate = mm + '/' + dd + '/' + yyyy;
+    const now = dayjs();
+    const previousDay = dayjs().subtract('88', 'd');
+    const howLong = dayjs.duration(previousDay.diff(now)).humanize();
 
-    const [x,y] = useState(0);
+
+    const hash = dayjs(now).format('HH:mm:ss');
+    const todayDay = dayjs(now).format('DD');
+    const todayMonth = dayjs(now).format('MM');
+    const todayYear = dayjs(now).format('YYYY');
+    const todayDate = `${todayMonth}/${todayDay}/${todayYear}`
+    const todayId = `${todayMonth}-${todayDay}-${todayYear}-${hash}`;
+
     const [toggleState, updateToggleState] = useState(true);
     const [inputTitle, updateInputTitle] = useState('');
     const [inputEntry, updateInputEntry] = useState('');
 
+
+    const buddies = {
+        jong: { age: 31 },
+        Brandon: true,
+        bojangles: false
+    };
+
+    const otherVariable = buddies.jong && buddies.joe && buddies.jong.age === buddies.joe.age;
+
+
     const toggleMode = (e) => {
         let button = e.target
         updateToggleState(toggleState => !toggleState)
-        console.log(toggleState);
 
         if(toggleState) {
             button.innerHTML =  'Day Mode';
@@ -94,27 +115,35 @@ const Whatever = ({AppStore}) => {
         }
     }
 
+    const tempObject = AppStore.entryObject;
+
     const onSubmit = (e) => {
         e.preventDefault()
 
-        const submitObject = {
-            title: inputTitle,
-            entry: inputEntry
-        };
+        const mobId = todayId;
+        const date = todayDate;
+        const title = inputTitle;
+        const entry = inputEntry;
 
-        console.log(submitObject);
+        console.log('===================>',mobId, '/n THE DATE', date, '/n THE TITLE', title, '/n THE ENTRY', entry)
+
+        AppStore.updateObject({
+            mobId: mobId,
+            date: date,
+            title: title,
+            entry: entry
+        })
+
     }
     
+    // CREATE A RENDER USING MOBX, DATA INTO ACTUAL HTML; SORT BY DATE.
 
-    const booleanThing = false;
-    const tempValue = AppStore.temp.get();
-
-    const tempObject = AppStore.entryObject;
 
     return (
         <Container toggle={toggleState}>
+            { process.env.REACT_APP_TEMP_VARIABLE === true }
             <div className="create-entry__date">
-                <span>Today's Date: </span>{todayDate}
+                <span>Today's Date: </span>{todayMonth || '----'} {'/'} { todayDay || '----'} {'/'} {todayYear || '----'}
             </div>
             <form>
                 <div className="create-entry__input-container">
@@ -136,6 +165,9 @@ const Whatever = ({AppStore}) => {
                 >
                     Night Mode
             </StyledButton>
+            <div>
+                {JSON.stringify(tempObject)}
+            </div>
             {/* <button 
                 className="testbutton" 
                 onClick={ () => {
