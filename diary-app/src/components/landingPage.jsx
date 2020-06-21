@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { navigate } from 'hookrouter';
 import { inject, observer } from 'mobx-react';
 import { toJS } from 'mobx';
 
@@ -40,7 +41,7 @@ const Container = styled.div`
 const LandingPage = () => {
 
     const goToPage = (url) => {
-        window.open(url, '_self');
+        navigate(url);
     } 
 
 

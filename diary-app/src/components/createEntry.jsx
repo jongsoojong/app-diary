@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+import { navigate } from 'hookrouter'
 import { inject, observer } from 'mobx-react';
 import { toJS } from 'mobx';
+
 
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
@@ -102,6 +104,9 @@ const CreateEntry = ({AppStore}) => {
 
     const otherVariable = buddies.jong && buddies.joe && buddies.jong.age === buddies.joe.age;
 
+    const goToPage = (url) => {
+        navigate(url);
+    } 
 
     const toggleMode = (e) => {
         let button = e.target
@@ -135,7 +140,7 @@ const CreateEntry = ({AppStore}) => {
 
     }
     
-    // Add Night Mode to mobx;
+    // Add Night Mode to mobx; style things
 
     return (
         <Container toggle={toggleState}>
@@ -154,6 +159,7 @@ const CreateEntry = ({AppStore}) => {
                 </div>
                 
                 <input type="submit" onClick={ (e) => onSubmit(e) } className="btn create-entry-btn"/>
+                <button onClick={ () => goToPage('/view-entries') } className="btn"> View Entries </button>
             </form>
             <div className="example-container">
                 <StyledButton toggle={toggleState}
@@ -164,22 +170,6 @@ const CreateEntry = ({AppStore}) => {
                     >
                         Night Mode
                 </StyledButton>
-                <div className="entry-example">
-                    {JSON.stringify(tempObject)}
-                </div>
-                <div className="diary-entry-loop">
-                    {
-                        Object.entries(tempObject).map(([hash, entry]) => {
-                            return (
-                            <div className="dairy-entry__entry" key={hash}>
-                                <div className="dairy-entry__date"> {entry.date} </div>
-                                <div className="dairy-entry__title"> {entry.title} </div>
-                                <div className="dairy-entry__entry"> {entry.entry} </div>
-                            </div>
-                            );
-                        })
-                    }
-                </div>
             </div>
         </Container>
     )
