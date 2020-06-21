@@ -122,7 +122,7 @@ const CreateEntry = ({AppStore}) => {
     
     const tempObject = AppStore.entryObject;
 
-
+    //refactor this entire component;
     const onSubmit = (e) => {
         e.preventDefault()
 
