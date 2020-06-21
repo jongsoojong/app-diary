@@ -19,7 +19,7 @@ const Container = styled.div`
     }
     .create-entry__date {
         color: ${props => props.toggle === true ? '#000000' : '#eeeeee' };
-    }  
+    }
     
     form,
     .example-container {
@@ -133,12 +133,9 @@ const CreateEntry = ({AppStore}) => {
             entry: entry
         })
 
-
-
     }
     
-    // CREATE A RENDER USING MOBX, DATA INTO ACTUAL HTML; SORT BY DATE.
-
+    // Add Night Mode to mobx;
 
     return (
         <Container toggle={toggleState}>
