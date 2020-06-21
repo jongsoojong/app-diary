@@ -114,8 +114,9 @@ const Whatever = ({AppStore}) => {
 
         }
     }
-
+    
     const tempObject = AppStore.entryObject;
+
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -125,14 +126,14 @@ const Whatever = ({AppStore}) => {
         const title = inputTitle;
         const entry = inputEntry;
 
-        console.log('===================>',mobId, '/n THE DATE', date, '/n THE TITLE', title, '/n THE ENTRY', entry)
-
         AppStore.updateObject({
             mobId: mobId,
             date: date,
             title: title,
             entry: entry
         })
+
+
 
     }
     
@@ -165,43 +166,20 @@ const Whatever = ({AppStore}) => {
                 >
                     Night Mode
             </StyledButton>
-            <div>
+            <div className="entry-example">
                 {JSON.stringify(tempObject)}
+                <p>{tempObject.date}</p>
+                <h2>{tempObject.title}</h2>
             </div>
-            {/* <button 
-                className="testbutton" 
-                onClick={ () => {
-                    AppStore.updateObject({title:inputTitle , entry:inputEntry})
-                }} 
-                >
-                    CLICK ME
-            </button>
-            <button onClick={ () => { AppStore.updateTemp() } } className="lol_button"> HEY </button>
-            <div>
-                <div>
-                    LOCAL STATE
-                </div>
-                <div>
-                    {inputTitle}
-                </div>
-                <div>
-                    {inputEntry}
-                </div>
-                <div>
-                    {tempValue}
-                </div>
+            <div className="diary-entry-loop">
+                {
+                    Object.entries(tempObject).map(([key, value]) => {
+                        <div className="dairy-entry__entry" id={key}>
+                            {value}
+                        </div>
+                    })
+                }
             </div>
-            <div>
-                <div>
-                    MOBX
-                </div>
-                <div>
-                    {tempObject.entryTitle}
-                </div>
-                <div>
-                    {tempObject.entryContent}
-                </div>
-            </div> */}
         </Container>
     )
 };

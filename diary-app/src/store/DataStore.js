@@ -6,8 +6,6 @@ class DataStore {
         console.log('loading data')
     };
 
-    temp = observable.box(8888);
-
     dataObject = observable({something: "somethingElse"});
 
     entryObject = observable({  
