@@ -139,8 +139,6 @@ const CreateEntry = ({AppStore}) => {
         })
 
     }
-    
-    // Add Night Mode to mobx; style things
 
     return (
         <Container toggle={toggleState}>
