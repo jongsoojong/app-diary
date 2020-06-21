@@ -168,15 +168,15 @@ const Whatever = ({AppStore}) => {
             </StyledButton>
             <div className="entry-example">
                 {JSON.stringify(tempObject)}
-                <p>{tempObject.date}</p>
-                <h2>{tempObject.title}</h2>
             </div>
             <div className="diary-entry-loop">
                 {
                     Object.entries(tempObject).map(([key, value]) => {
+                        return (
                         <div className="dairy-entry__entry" id={key}>
                             {value}
                         </div>
+                        );
                     })
                 }
             </div>
