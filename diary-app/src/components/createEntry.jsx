@@ -21,7 +21,8 @@ const Container = styled.div`
         color: ${props => props.toggle === true ? '#000000' : '#eeeeee' };
     }  
     
-    form {
+    form,
+    .example-container {
         max-width: 768px;
         display: flex;
         flex-direction: column;
@@ -75,12 +76,11 @@ const StyledButton = styled.button `
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 
-const Whatever = ({AppStore}) => {
+const CreateEntry = ({AppStore}) => {
 
     const now = dayjs();
     const previousDay = dayjs().subtract('88', 'd');
     const howLong = dayjs.duration(previousDay.diff(now)).humanize();
-
 
     const hash = dayjs(now).format('HH:mm:ss');
     const todayDay = dayjs(now).format('DD');
@@ -158,30 +158,34 @@ const Whatever = ({AppStore}) => {
                 
                 <input type="submit" onClick={ (e) => onSubmit(e) } className="btn create-entry-btn"/>
             </form>
-            <StyledButton toggle={toggleState}
-                className="create-entry__nightmode btn toggle-btn" 
-                onClick={ (e) => {
-                    toggleMode(e);
-                }} 
-                >
-                    Night Mode
-            </StyledButton>
-            <div className="entry-example">
-                {JSON.stringify(tempObject)}
-            </div>
-            <div className="diary-entry-loop">
-                {
-                    Object.entries(tempObject).map(([key, value]) => {
-                        return (
-                        <div className="dairy-entry__entry" id={key}>
-                            {value}
-                        </div>
-                        );
-                    })
-                }
+            <div className="example-container">
+                <StyledButton toggle={toggleState}
+                    className="create-entry__nightmode btn toggle-btn" 
+                    onClick={ (e) => {
+                        toggleMode(e);
+                    }} 
+                    >
+                        Night Mode
+                </StyledButton>
+                <div className="entry-example">
+                    {JSON.stringify(tempObject)}
+                </div>
+                <div className="diary-entry-loop">
+                    {
+                        Object.entries(tempObject).map(([hash, entry]) => {
+                            return (
+                            <div className="dairy-entry__entry" key={hash}>
+                                <div className="dairy-entry__date"> {entry.date} </div>
+                                <div className="dairy-entry__title"> {entry.title} </div>
+                                <div className="dairy-entry__entry"> {entry.entry} </div>
+                            </div>
+                            );
+                        })
+                    }
+                </div>
             </div>
         </Container>
     )
 };
 
-export default inject('AppStore')(observer(Whatever));
+export default inject('AppStore')(observer(CreateEntry));
