@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { navigate } from 'hookrouter';
 import { inject, observer } from 'mobx-react';
 import { toJS } from 'mobx';
+import firebase from '../firebase/index.js';
 
 import styled from 'styled-components';
 
@@ -40,9 +41,26 @@ const Container = styled.div`
 `
 const LandingPage = () => {
 
+    const [ dataArray, updateDataArray ] = useState([]);
+
+    useEffect(() => {
+        console.log('only once');
+        firebase.firestore().collection('diary-entries').onSnapshot((snapshot) => {
+            console.log('OH SNAP', snapshot);
+            const totalEntries = snapshot.docs.map((doc) => ({ 
+                id: doc.id,
+                ...doc.data() 
+            }))
+            updateDataArray(totalEntries);
+        })
+    }, [])
+
+    console.log('the DATA ARRAY', dataArray);
+
     const goToPage = (url) => {
         navigate(url);
     } 
+
 
 
     return (
@@ -53,6 +71,12 @@ const LandingPage = () => {
                 <div className="main__button-container">
                     <button onClick={ () => goToPage('/create-entry') } className="btn">Create an Entry</button>
                     <button onClick={ () => goToPage('/view-entries') } className="btn">View Your Entries</button>
+                </div>
+
+                <div className="dataArrayRender">
+                    { dataArray.map((entry) => {
+                        return (<div> {entry.id} </div>)
+                    }) }
                 </div>
             </div>
         </Container>

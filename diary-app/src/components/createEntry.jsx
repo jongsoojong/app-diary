@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import firebase from '../firebase';
+
 import { navigate } from 'hookrouter'
 import { inject, observer } from 'mobx-react';
 import { toJS } from 'mobx';
@@ -95,15 +97,6 @@ const CreateEntry = ({AppStore}) => {
     const [inputTitle, updateInputTitle] = useState('');
     const [inputEntry, updateInputEntry] = useState('');
 
-
-    const buddies = {
-        jong: { age: 31 },
-        Brandon: true,
-        bojangles: false
-    };
-
-    const otherVariable = buddies.jong && buddies.joe && buddies.jong.age === buddies.joe.age;
-
     const goToPage = (url) => {
         navigate(url);
     } 
@@ -138,11 +131,16 @@ const CreateEntry = ({AppStore}) => {
             entry: entry
         })
 
+        firebase.firestore().collection('diary-entries').doc(mobId).set({
+            date: date,
+            title: title,
+            entry: entry
+        })
+
     }
 
     return (
         <Container toggle={toggleState}>
-            { process.env.REACT_APP_TEMP_VARIABLE === true }
             <div className="create-entry__date">
                 <span>Today's Date: </span>{todayMonth || '----'} {'/'} { todayDay || '----'} {'/'} {todayYear || '----'}
             </div>
