@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { navigate } from 'hookrouter';
 import { inject, observer } from 'mobx-react';
 import { toJS } from 'mobx';
+
 
 import styled from 'styled-components';
 
@@ -38,12 +39,13 @@ const Container = styled.div`
         text-decoration: none;
     }
 `
-const LandingPage = () => {
+const LandingPage = ({AppStore}) => {
+
+    const tempObject = AppStore.entryObject;
 
     const goToPage = (url) => {
         navigate(url);
     } 
-
 
     return (
         <Container>
@@ -54,9 +56,19 @@ const LandingPage = () => {
                     <button onClick={ () => goToPage('/create-entry') } className="btn">Create an Entry</button>
                     <button onClick={ () => goToPage('/view-entries') } className="btn">View Your Entries</button>
                 </div>
+
+                <div className="dataArrayRender">
+                    {
+                        Object.entries(tempObject).map(([hash, entry]) => {
+                            return(
+                                <div>{hash}</div>
+                            )
+                        })
+                    }
+                </div>
             </div>
         </Container>
     )
 }
 
-export default LandingPage;
+export default inject('AppStore')(observer(LandingPage));

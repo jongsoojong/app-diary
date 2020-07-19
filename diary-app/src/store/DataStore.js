@@ -13,10 +13,6 @@ class DataStore {
     })
 
     updateObject = action(( {mobId, date, title, entry} ) => {
-        console.log('mobId', mobId);
-        console.log('date', date);
-        console.log('title', title);
-        console.log('entry', entry);
         
         if(!this.entryObject[mobId]) {
             this.entryObject[mobId] = {

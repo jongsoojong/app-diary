@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "dayjs": "^1.8.28",
     "debug": "^4.1.1",
+    "firebase": "^7.15.5",
     "hookrouter": "^1.2.3",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
@@ -36,5 +37,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "react-test-renderer": "^16.13.1"
   }
 }
