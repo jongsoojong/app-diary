@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import { navigate } from 'hookrouter';
 import { inject, observer } from 'mobx-react';
 import { toJS } from 'mobx';
-import firebase from '../firebase/index.js';
+
 
 import styled from 'styled-components';
 
@@ -39,29 +39,13 @@ const Container = styled.div`
         text-decoration: none;
     }
 `
-const LandingPage = () => {
+const LandingPage = ({AppStore}) => {
 
-    const [ dataArray, updateDataArray ] = useState([]);
-
-    useEffect(() => {
-        console.log('only once');
-        firebase.firestore().collection('diary-entries').onSnapshot((snapshot) => {
-            console.log('OH SNAP', snapshot);
-            const totalEntries = snapshot.docs.map((doc) => ({ 
-                id: doc.id,
-                ...doc.data() 
-            }))
-            updateDataArray(totalEntries);
-        })
-    }, [])
-
-    console.log('the DATA ARRAY', dataArray);
+    const tempObject = AppStore.entryObject;
 
     const goToPage = (url) => {
         navigate(url);
     } 
-
-
 
     return (
         <Container>
@@ -74,13 +58,17 @@ const LandingPage = () => {
                 </div>
 
                 <div className="dataArrayRender">
-                    { dataArray.map((entry) => {
-                        return (<div> {entry.id} </div>)
-                    }) }
+                    {
+                        Object.entries(tempObject).map(([hash, entry]) => {
+                            return(
+                                <div>{hash}</div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         </Container>
     )
 }
 
-export default LandingPage;
+export default inject('AppStore')(observer(LandingPage));
