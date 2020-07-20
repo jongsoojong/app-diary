@@ -4,6 +4,7 @@ import { navigate } from 'hookrouter';
 import { inject, observer } from 'mobx-react';
 import { toJS } from 'mobx';
 
+import Entry from './Entry';
 
 import styled from 'styled-components';
 
@@ -61,7 +62,7 @@ const LandingPage = ({AppStore}) => {
                     {
                         Object.entries(tempObject).map(([hash, entry]) => {
                             return(
-                                <div>{hash}</div>
+                               <Entry id={hash} data={entry}/>
                             )
                         })
                     }

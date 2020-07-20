@@ -5,6 +5,8 @@ import { toJS } from 'mobx';
 
 import styled from 'styled-components';
 
+import Entry from './Entry'
+
 const Container = styled.div`
     width: 100%;
     min-height: 100vh;
@@ -32,13 +34,7 @@ const ViewEntries = ({AppStore}) => {
                     {
                         Object.entries(userEntries).map(([hash, entry]) => {
                             return(
-                                <div className="view-entries__entry" key={hash}>
-                                    <div className="entry__date"> {entry.date} </div>
-                                    <div className="entry__title"> {entry.title} </div>
-                                    <div className="entry__entry">
-                                        {entry.entry}
-                                    </div>
-                                </div>
+                                <Entry id={hash} data={entry}/>
                             );
                         })
                     }
