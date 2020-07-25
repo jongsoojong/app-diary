@@ -52,7 +52,7 @@ const Entry = ({id, data}) => {
 		<div className="date">{data.date}</div>
 		<div className="content">
 
-		<div id="">{data.entry}</div>
+		<div>{data.entry}</div>
 
 		</div>
 		

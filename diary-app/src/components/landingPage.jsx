@@ -4,6 +4,7 @@ import { navigate } from 'hookrouter';
 import { inject, observer } from 'mobx-react';
 import { toJS } from 'mobx';
 
+import Hero from './Hero';
 import Entry from './Entry';
 
 import styled from 'styled-components';
@@ -34,7 +35,7 @@ const Container = styled.div`
         padding: 20px 40px;
         font-size: 18px;
         background-color: #df7116;
-        color: 	#ffffff;
+        color:  #ffffff;
         border: none;
         cursor: pointer;
         text-decoration: none;
@@ -51,6 +52,7 @@ const LandingPage = ({AppStore}) => {
     return (
         <Container>
             <div className="main__inner-container">
+                <Hero/> 
                 <h1 className="main_title"> DIARY APP </h1>
 
                 <div className="main__button-container">
