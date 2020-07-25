@@ -4,6 +4,9 @@ import styled from 'styled-components'
 
 const Container = styled.div`
 
+.hero-image {
+    width: 100%;
+}
 `
 
 //Declared Components
@@ -14,7 +17,7 @@ const Hero = ({}) => {
 
     return (
         <Container>
-            <img src={heroUrl}/>
+            <img className="hero-image" src={heroUrl}/>
         </Container>
 
         );
