@@ -6,6 +6,7 @@ import { toJS } from 'mobx';
 
 import Hero from './Hero';
 import Entry from './Entry';
+import Navbar from './Navbar';
 
 import styled from 'styled-components';
 

@@ -4,6 +4,7 @@ import {useRoutes} from 'hookrouter';
 import CreateEntry from './components/createEntry'
 import LandingPage from './components/landingPage';
 import ViewEntries  from './components/viewEntries';
+import Navbar from './componets/Navbar';
 
 import firebase from './firebase/index.js';
 
@@ -33,7 +34,10 @@ const App = ({AppStore}) =>  {
   const routeResult = useRoutes(routes);
 
   return (
+    <div>
+    <Navbar/>
       routeResult 
+      </div>
   );
 }
 
