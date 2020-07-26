@@ -10,7 +10,7 @@ const Container = styled.div`
 
 //Declared Components
 
-const Hero = ({}) => {
+const Hero = () => {
     const heroUrl =
         'https://images.unsplash.com/photo-1586184028447-9e913a92e8ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2978&q=80';
 
@@ -19,8 +19,6 @@ const Hero = ({}) => {
             <img
                 className="hero-image"
                 src={heroUrl}
-                alt={}
-                title={}
                 onClick={() => {
                     console.log('I was clicked today');
                 }}
