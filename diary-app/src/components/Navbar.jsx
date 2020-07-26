@@ -29,9 +29,8 @@ ul {
 	}
 }
 
-navBarSection {
+.navBarSection {
 	flex: 1;
-	width: 33%;
 }
 `;
 
