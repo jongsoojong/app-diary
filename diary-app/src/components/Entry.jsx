@@ -1,9 +1,9 @@
 // Imports
-import React from 'react';
+import React from "react";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-// Component Declartion 
+// Component Declartion
 const Container = styled.div`
 	display: flex;
 	flex: 1;
@@ -42,16 +42,18 @@ const Container = styled.div`
 
 `;
 
-const Entry = ({id, data}) => {
-	return (
-		<Container>
-			<div className="title"><h2>{data.title}</h2></div>
-			<div className="date">{data.date}</div>
-			<div className="content">
-				<div>{data.entry}</div>
-			</div>
-		</Container>
-		);
+const Entry = ({ id, data }) => {
+  return (
+    <Container>
+      <div className="title">
+        <h2>{data.title}</h2>
+      </div>
+      <div className="date">{data.date}</div>
+      <div className="content">
+        <div>{data.entry}</div>
+      </div>
+    </Container>
+  );
 };
 
 export default Entry;
