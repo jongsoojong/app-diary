@@ -43,23 +43,15 @@ const Container = styled.div`
 `;
 
 const Entry = ({id, data}) => {
-	console.log("id: ", id);
-	console.log("data: ", data);
 	return (
 		<Container>
-		
-		<div className="title"><h2>{data.title}</h2></div>
-		<div className="date">{data.date}</div>
-		<div className="content">
-
-		<div>{data.entry}</div>
-
-		</div>
-		
-
+			<div className="title"><h2>{data.title}</h2></div>
+			<div className="date">{data.date}</div>
+			<div className="content">
+				<div>{data.entry}</div>
+			</div>
 		</Container>
 		);
 };
 
-// Exports
 export default Entry;
