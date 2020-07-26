@@ -1,51 +1,51 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import './App.css';
 
-import { useRoutes } from "hookrouter";
-import CreateEntry from "./components/createEntry";
-import LandingPage from "./components/landingPage";
-import ViewEntries from "./components/viewEntries";
-import Navbar from "./components/Navbar";
+import { useRoutes } from 'hookrouter';
+import CreateEntry from './components/createEntry';
+import LandingPage from './components/landingPage';
+import ViewEntries from './components/viewEntries';
+import Navbar from './components/Navbar';
 
-import firebase from "./firebase/index.js";
+import firebase from './firebase/index.js';
 
-import { inject, observer } from "mobx-react";
+import { inject, observer } from 'mobx-react';
 
 const App = ({ AppStore }) => {
-  firebase
-    .firestore()
-    .collection("diary-entries")
-    .onSnapshot((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        AppStore.updateObject({
-          mobId: doc.id,
-          date: doc.data().date,
-          title: doc.data().title,
-          entry: doc.data().entry,
+    firebase
+        .firestore()
+        .collection('diary-entries')
+        .onSnapshot(snapshot => {
+            snapshot.docs.forEach(doc => {
+                AppStore.updateObject({
+                    mobId: doc.id,
+                    date: doc.data().date,
+                    title: doc.data().title,
+                    entry: doc.data().entry
+                });
+            });
         });
-      });
-    });
 
-  const routes = {
-    "/": () => {
-      return <LandingPage />;
-    },
-    "/create-entry": () => {
-      return <CreateEntry />;
-    },
-    "/view-entries": () => {
-      return <ViewEntries />;
-    },
-  };
+    const routes = {
+        '/': () => {
+            return <LandingPage />;
+        },
+        '/create-entry': () => {
+            return <CreateEntry />;
+        },
+        '/view-entries': () => {
+            return <ViewEntries />;
+        }
+    };
 
-  const routeResult = useRoutes(routes);
+    const routeResult = useRoutes(routes);
 
-  return (
-    <>
-      <Navbar />
-      {routeResult}
-    </>
-  );
+    return (
+        <>
+            <Navbar />
+            {routeResult}
+        </>
+    );
 };
 
-export default inject("AppStore")(observer(App));
+export default inject('AppStore')(observer(App));
