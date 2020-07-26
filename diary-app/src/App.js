@@ -34,10 +34,10 @@ const App = ({AppStore}) =>  {
   const routeResult = useRoutes(routes);
 
   return (
-    <div>
+    <>
       <Navbar/>
-      {routeResult} 
-    </div>
+      {routeResult}
+    </>
   );
 }
 
