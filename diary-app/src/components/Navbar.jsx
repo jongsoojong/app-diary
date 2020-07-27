@@ -1,11 +1,17 @@
-// Import
+// Import Statements
+// STRUCTURE
 import React from 'react';
-
 import styled from 'styled-components';
 
+// COMPONENTS
+import NavPiece from './NavPiece';
+
+// HELPERS
+
+// ASSETS
 import { ReactComponent as DiaryIcon } from '../assets/diaryIcon.svg';
 
-//Compoment Declartion
+// Styling Declaration
 const Container = styled.div`
     display: flex;
     flex-direction: row;
@@ -33,28 +39,52 @@ const Container = styled.div`
     }
 `;
 
-const Navbar = ({}) => {
+// Component Declaration
+const Navbar = () => {
+    /*
+    CREATION:
+    - create array of paths with titles and end routes for hookrouter
+
+    TO DO:
+    - connect router to userPath route entries
+    */
+
+    const userPaths = [
+        {
+            title: 'Account',
+            route: '/account'
+        },
+        {
+            title: 'Settings',
+            route: '/settings'
+        }
+    ];
+
+    /*
+    RETURN
+    - Take NavPiece components, pass in prop for render return
+    - loop through userPaths to return <li></li> elements with title and route
+
+    TO DO:
+    - convert <div className='navBarSection'> to be a <NavPiece>
+    */
+
     return (
         <Container>
-            <div className="navBarSection">
-                <ul>
-                    <li className="DiaryIcon">
-                        <DiaryIcon />
-                    </li>
-                    <li>View Entry</li>
-                </ul>
-            </div>
+            <NavPiece type={'left'} />
 
-            <div className="navBarSection"></div>
+            <NavPiece type={'middle'} />
 
             <div className="navBarSection">
                 <ul>
-                    <li>Account</li>
-                    <li>Settings</li>
+                    {userPaths.map(path => {
+                        return <li onClick={() => console.log(path.route)}>{path.title}</li>;
+                    })}
                 </ul>
             </div>
         </Container>
     );
 };
-// Export
+
+// Export Statements
 export default Navbar;

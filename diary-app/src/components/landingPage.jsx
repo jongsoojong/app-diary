@@ -30,18 +30,22 @@ const Container = styled.div`
     }
 
     .btn {
-        display: block;
-        max-width: 300px;
-        margin: 0 auto 20px;
-        padding: 20px 40px;
-        font-size: 18px;
-        background-color: #df7116;
-        color:  #ffffff;
-        border: none;
-        cursor: pointer;
-        text-decoration: none;
     }
 `;
+
+const Button = styled.button`
+    display: block;
+    max-width: 300px;
+    margin: 0 auto 20px;
+    padding: 20px 40px;
+    font-size: 18px;
+    background-color: #df7116;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+`;
+
 const LandingPage = ({ AppStore }) => {
     const tempObject = AppStore.entryObject;
 
@@ -56,12 +60,8 @@ const LandingPage = ({ AppStore }) => {
                 <h1 className="main_title"> DIARY APP </h1>
 
                 <div className="main__button-container">
-                    <button onClick={() => goToPage('/create-entry')} className="btn">
-                        Create an Entry
-                    </button>
-                    <button onClick={() => goToPage('/view-entries')} className="btn">
-                        View Your Entries
-                    </button>
+                    <Button onClick={() => goToPage('/create-entry')}>Create an Entry</Button>
+                    <Button onClick={() => goToPage('/view-entries')}>View Your Entries</Button>
                 </div>
 
                 <div className="dataArrayRender">

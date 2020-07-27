@@ -6,6 +6,7 @@ import CreateEntry from './components/createEntry';
 import LandingPage from './components/landingPage';
 import ViewEntries from './components/viewEntries';
 import Navbar from './components/Navbar';
+import Loader from './components/Loader';
 
 import firebase from './firebase/index.js';
 
@@ -40,8 +41,17 @@ const App = ({ AppStore }) => {
 
     const routeResult = useRoutes(routes);
 
+    /*
+    LOADER TO DO:
+    - tied to mobx, user interactions (onClick) from navigations
+    - update state, timeout / interval, update state, navigate to intended target
+    */
+
+    const tempVariable = true;
+
     return (
         <>
+            {tempVariable === true && <Loader />}
             <Navbar />
             {routeResult}
         </>
