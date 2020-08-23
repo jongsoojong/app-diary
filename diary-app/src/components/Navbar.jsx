@@ -1,69 +1,86 @@
-// Import
+// Import Statements
+// STRUCTURE
 import React from 'react';
-
 import styled from 'styled-components';
 
-import {ReactComponent as DiaryIcon} from '../assets/diaryIcon.svg'
+// COMPONENTS
+import NavPiece from './NavPiece';
 
-//Compoment Declartion
+// HELPERS
+
+// ASSETS
+import { ReactComponent as DiaryIcon } from '../assets/diaryIcon.svg';
+import { ReactComponent as accountIcon} from '../assets/accountIcon.svg';
+import { ReactComponent as settingsIcon} from '../assets/settingsIcon.svg';
+
+// Styling Declaration
 const Container = styled.div`
-display: flex;
-flex-direction: row;
-width: 100%;
-
-ul {
-	list-style-type: none;
-	display: flex;
-	flex: 1;
-	flex-direction: row;
-
-}
-
-.DiaryIcon {
-	width: 40px;
-	height: 40px;
-	svg {
-		&:hover {
-			fill: blue;
-		}
-	}
-}
-
-.navBarSection {
-	flex: 1;
-}
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    ul {
+        list-style-type: none;
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+    }
+    .DiaryIcon {
+        width: 40px;
+        height: 40px;
+        svg {
+            &:hover {
+                fill: blue;
+            }
+        }
+    }
+    .accountIcon{
+        width: 40px;
+        height: 40px;
+    }
+    .navBarSection {
+        flex: 1;
+    }
 `;
 
+// Component Declaration
+const Navbar = () => {
+    /*
+    CREATION:
+    - create array of paths with titles and end routes for hookrouter
+    TO DO:
+    - connect router to userPath route entries
+    */
 
-const Navbar = ({}) => {
+    const userPaths = [
+        {
+            title: 'Account',
+            route: '/account'
+        },
+        {
+            title: 'Settings',
+            route: '/settings'
+        }
+    ];
 
-return (
-	<Container>
-		<div className="navBarSection">
-			<ul>
-				<li className="DiaryIcon"><DiaryIcon/></li>
-				<li>View Entry</li>
-			</ul>
+    /*
+    RETURN
+    - Take NavPiece components, pass in prop for render return
+    - loop through userPaths to return <li></li> elements with title and route
+    TO DO:
+    - convert <div className='navBarSection'> to be a <NavPiece>
+    */
 
-		</div>
+    return (
+        <Container>
+            <NavPiece type={'left'} />
 
-		<div className="navBarSection">
-			
-		</div>
+            <NavPiece type={'middle'} />
 
-		<div className="navBarSection">
-			<ul>
-			<li>Account</li>
-			<li>Settings</li>
+            <NavPiece type={'right'} />
 
-			</ul>
-
-		</div>
-
-
-	</Container>
-	);
-
+        </Container>
+    );
 };
-// Export
+
+// Export Statements
 export default Navbar;
