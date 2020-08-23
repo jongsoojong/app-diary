@@ -64,7 +64,7 @@ ul {
         align-items: center;
         display: none;
 
-        @media screen and (min-width: 769px;){
+        @media screen and (min-width: 769px){
             display: flex;
         }
     }
@@ -74,7 +74,7 @@ ul {
         align-items: center;
         display: flex;
 
-        @media screen and (min-width: 769px;){
+        @media screen and (min-width: 769px){
             display: none;
         }
     }
