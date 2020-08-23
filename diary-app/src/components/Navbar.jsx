@@ -8,39 +8,13 @@ import NavPiece from './NavPiece';
 
 // HELPERS
 
-// ASSETS
-import { ReactComponent as DiaryIcon } from '../assets/diaryIcon.svg';
-import { ReactComponent as accountIcon} from '../assets/accountIcon.svg';
-import { ReactComponent as settingsIcon} from '../assets/settingsIcon.svg';
 
 // Styling Declaration
 const Container = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
-    ul {
-        list-style-type: none;
-        display: flex;
-        flex: 1;
-        flex-direction: row;
-    }
-    .DiaryIcon {
-        width: 40px;
-        height: 40px;
-        svg {
-            &:hover {
-                fill: blue;
-            }
-        }
-    }
-    .accountIcon{
-        width: 40px;
-        height: 40px;
-    }
-    .navBarSection {
-        flex: 1;
-    }
-`;
+ `;
 
 // Component Declaration
 const Navbar = () => {
@@ -52,6 +26,14 @@ const Navbar = () => {
     */
 
     const userPaths = [
+    {
+            title: 'View Entries',
+            route: '/view-entries'
+        },
+        {
+            title: 'Create Entry',
+            route: '/create-entry'
+        },
         {
             title: 'Account',
             route: '/account'
