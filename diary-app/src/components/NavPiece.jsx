@@ -6,6 +6,7 @@ import { ReactComponent as ViewEntryIcon } from '../assets/viewEntryIcon.svg';
 import { ReactComponent as DiaryIcon } from '../assets/diaryIcon.svg';
 import { ReactComponent as AccountIcon} from '../assets/accountIcon.svg';
 import { ReactComponent as SettingsIcon} from '../assets/settingsIcon.svg';
+import { ReactComponent as MenuIcon} from '../assets/menuIcon.svg';
 
 const Container = styled.div`
     display: flex;
@@ -31,7 +32,7 @@ ul {
     }
     .viewEntryNav{
         width: 40px;
-        height: 40px;
+
 
     }
 
@@ -45,6 +46,11 @@ ul {
         height: 40px;
 
     }
+
+    .menuIcon{
+        width: 40px;
+        height: 40px;
+    }
     .navBarSection {
         flex: 1;
     }
@@ -55,6 +61,22 @@ ul {
 
     .navSectionRight{
         justify-content: flex-end;
+        align-items: center;
+        display: none;
+
+        @media screen and (min-width: 769px;){
+            display: flex;
+        }
+    }
+
+    .navSectionRight--mobile{
+        justify-content: flex-end;
+        align-items: center;
+        display: flex;
+
+        @media screen and (min-width: 769px;){
+            display: none;
+        }
     }
 
   
@@ -96,6 +118,14 @@ const NavPiece = ({ type }) => {
                         <SettingsIcon />
                     </li>
 
+
+                </ul>
+
+                <ul className="navSectionRight--mobile">
+                    <li className="menuIcon">
+                    <MenuIcon />
+
+                    </li>
 
                 </ul>
              </Container>

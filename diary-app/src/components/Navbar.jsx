@@ -14,6 +14,8 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
+    position: fixed;
+    background: #eeeeee;
  `;
 
 // Component Declaration

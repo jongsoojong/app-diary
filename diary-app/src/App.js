@@ -10,6 +10,15 @@ import firebase from './firebase/index.js';
 
 import { inject, observer } from 'mobx-react';
 
+import styled from 'styled-components';
+
+const Container = styled.div`
+.main {
+  padding-top: 72px;
+}
+
+`
+
 
 
 const App = ({AppStore}) =>  {
@@ -34,10 +43,12 @@ const App = ({AppStore}) =>  {
   const routeResult = useRoutes(routes);
 
   return (
-    <div>
+    <Container>
       <Navbar/>
-      {routeResult} 
-    </div>
+      <div className="main">
+      {routeResult}
+      </div>
+    </Container>
   );
 }
 
