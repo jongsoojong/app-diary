@@ -53,6 +53,18 @@ const LandingPage = ({ AppStore }) => {
         navigate(url);
     };
 
+    const users = AppStore.usersObject;
+    console.log(users);
+
+    useEffect(() => {
+        const fetchUsers = async() => {
+            await AppStore.fetchUsers();
+        };
+
+        fetchUsers();
+
+    }, []);
+
     return (
         <Container>
             <div className="main__inner-container">
