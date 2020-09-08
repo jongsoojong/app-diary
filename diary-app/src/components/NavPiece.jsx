@@ -65,7 +65,7 @@ ul {
         width: 40px;
         svg {
             &:hover {
-                fill: pink!important;
+                fill: pink;
             }
         }
 
