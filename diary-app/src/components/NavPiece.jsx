@@ -11,6 +11,32 @@ import { ReactComponent as MenuIcon} from '../assets/menuIcon.svg';
 const Container = styled.div`
     display: flex;
     flex: 1;
+
+.tooltip {
+    position:relative;
+    display: inline-block;
+
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px; 
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px; 
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+ }
+
 ul {
         list-style-type: none;
         display: flex;
@@ -20,6 +46,11 @@ ul {
     .logoIcon {
         width: 40px;
         height: 40px;
+        svg {
+            &:hover {
+                fill: purple;
+            }
+        }
     }
     .DiaryIcon {
         width: 40px;
@@ -32,6 +63,11 @@ ul {
     }
     .viewEntryNav{
         width: 40px;
+        svg {
+            &:hover {
+                fill: pink!important;
+            }
+        }
 
 
     }
@@ -39,17 +75,33 @@ ul {
     .accountIcon{
         width: 40px;
         height: 40px;
+        svg {
+            &:hover {
+                fill: green;
+            }
+        }
     }
 
     .settingsIcon{
         width: 40px;
         height: 40px;
+        svg {
+            &:hover {
+                fill: red;
+            }
+        }
 
     }
 
     .menuIcon{
         width: 40px;
         height: 40px;
+        svg {
+            &:hover {
+                fill: yellow;
+            }
+        }
+        
     }
     .navBarSection {
         flex: 1;
@@ -88,8 +140,9 @@ const NavPiece = ({ type }) => {
         return (
             <Container type={type}>
                 <ul>
-                <li className="logoIcon">
+                <li className="logoIcon tooltip tooltiptext">
                     <LogoIcon />
+                    <span class="tooltiptext">Jong is Awesome</span>
                 </li>
                     
                 </ul>
@@ -100,22 +153,25 @@ const NavPiece = ({ type }) => {
             <Container type={type}>
                 <ul className="navSectionRight">
 
-                <li className="DiaryIcon">
+                <li className="DiaryIcon tooltip tooltiptext">
                         <DiaryIcon />
+                        <span class="tooltiptext">Create Entry</span>
                     </li>
-                    <li className="viewEntryNav">
+                    <li className="viewEntryNav tooltip tooltiptext">
                     <ViewEntryIcon />
-                        
+                        <span class="tooltiptext">View Entry</span>
                     </li>
 
 
-                    <li className="accountIcon">
+                    <li className="accountIcon tooltip tooltiptext">
                     <AccountIcon />
+                    <span class="tooltiptext">Account</span>
 
                         
                     </li>
-                    <li className="settingsIcon">
+                    <li className="settingsIcon tooltip tooltiptext">
                         <SettingsIcon />
+                        <span class="tooltiptext">Settings</span>
                     </li>
 
 
