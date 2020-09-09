@@ -5,6 +5,7 @@ import CreateEntry from './components/createEntry'
 import LandingPage from './components/landingPage';
 import ViewEntries  from './components/viewEntries';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 import firebase from './firebase/index.js';
 
@@ -47,6 +48,7 @@ const App = ({AppStore}) =>  {
       <Navbar/>
       <div className="main">
       {routeResult}
+      <Footer />
       </div>
     </Container>
   );
